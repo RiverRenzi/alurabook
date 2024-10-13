@@ -1,0 +1,171 @@
+.cabeçalho__menu-hamburguer {
+    width: 24px;/* tamanho largura*/
+    height: 24px; /* altura */
+    background-image: url("../img/Menu.svg");/* .. (dois pontos) volta pra pasta inicial 'alurabooks'*/
+    background-repeat: no-repeat;  /* pois estava duplicando a imagem*/
+    background-position: center;
+    display: inline-block;/*permite mexer na altura e largura 'block'*/
+}
+
+/* esse combinador CSS "~"procura outro elemento que está em sguida dele( que tenha mesma classe)
+    depois colocamos ">"que ele procura algo dentro desse elemento
+    pseudo classe 'checked" ela detecta se input está selecionado */
+
+.container__botao:checked ~ .container__rotulo > .cabeçalho__menu-hamburguer {
+    background-image: url("../img/Menu.svg");
+    /*altera img do icone*/
+}
+
+.cabeçalho {
+    background-color: var(--branco);
+    display: flex;
+    justify-content: space-between;/* separa elementos com mesmo espaço entre eles, com tem so 2 vai um pra cada lado*/
+    align-items: center;
+    position: relative;/* libera a opçao de vc colocar (pra cima,baixo,direita,esquerda)*//* essa opção 'relative' ele fica diferente de 'estatico' possibilitando ser modificado*/
+}
+
+.container {
+    display: flex;
+    align-items: center;
+}
+
+.container__imagem {
+    padding: 1em;
+}
+
+.lista-menu {
+    display: none;/* "some" com itens da lista */
+    position: absolute;/* permite que vc movimente o elemento de acordo com 'cabecalho'*/
+    top: 100%;/* 'desloca' 100% do elemento pra baixo(top) do cabecalho */
+    width: 60vw;/*aumenta largura, tamanho do fundo do menu* sendo ex:60 % da tela*/
+}
+
+.container__botao:checked~.lista-menu {/*ao clicar no menu ele "chama" elemento lista depois do '~'*/
+    display: block;/* elemento será pocionado em nova linha  ele será tratado como um bloco */
+}
+
+.lista-menu__titulo,
+.lista-menu__item {
+    padding: 1em;
+    background-color: var(--branco);
+}
+
+.lista-menu__titulo {
+    color: var(--laranja);
+    font-weight: 700;
+}
+
+.lista-menu__link {
+    background: var(--azul-degrade);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-transform: uppercase;/*muda pra maiuscula*/
+}
+
+.container__botao {
+    display: none;/*pra tirar simbolo de selecionado ao lado do botão*/
+}
+
+.container__titulo {
+    display: none;/*some comos sub-titulos*/
+}
+
+.opções {
+    display: none;
+}
+/*media query (consulta de midia*/
+/*aplica estilos qdo chega na medida determinada (ex: qdo minimo for 1024)*/
+
+.container__texto {
+    display: none;
+}
+
+@media screen and (min-width: 1024px) {
+
+    .container__titulo,
+    .container__titulo--negrito {
+        font-family: var(--fonte-secundario);
+        font-size: 30px;
+    }
+
+    .container__titulo {
+        font-weight: 400;
+        display: block;/*faz o titulo voltar aparecer*/
+    }
+
+    .container__titulo--negrito {
+        font-weight: 700;
+    }
+
+    .opções {
+        display: flex;
+    }
+
+    .opções__item {
+        padding: 0 1em;
+        text-transform: uppercase;
+    }
+
+    .opções__link {
+        text-decoration: none;
+        color: var(--preto);
+    }
+
+    .container__imagem-transparente {
+        display: none; /*some com o "coração" (favoritos)*/
+    }
+
+    .cabeçalho__menu-hamburguer {
+        display: none;
+    }
+
+    .opções__botão:checked~.lista-menu {/*para aparecer menu qdo click*/
+        display: block;
+        width: auto;/*ajusta tamanho p ficar igual as palavras*/
+    }
+
+    .opções__botão {
+        display: none;/*tira 'seleção ticado" ao lado do menu*/
+    } /*diplay:none serve para OCULTAR um elemento*/
+
+    .opções__botão:checked ~ .opções__rotulo > .opções__item {
+        background:var(--azul-degrade);
+        color: var(--branco);
+    }
+
+    .lista-menu__item:hover { /*muda cor qdo passa o mouse em cima*/
+        background: var(--azul-degrade);
+    }
+
+    .lista-menu__item:hover > .lista-menu__link { /*muda cor do escrito */
+        -webkit-text-fill-color: var(--branco);
+         text-decoration: none; /* tira risco de baixo*/
+    }
+
+}
+
+
+
+@media screen and (min-width: 1728px) {
+    .container__link {
+        display: flex;
+        align-items: center;/*alinhado com centro do icone*/
+        text-decoration: none;
+        color: black;
+    }
+
+    .cabecalho {
+        padding: 0 2em;
+    }
+
+    .opções {
+        margin-right: auto; /*preenche espaço right( direita) desloca pra direita os itens*/
+    }
+
+    .container__texto {
+        display: block;/*faz aparecer texto nesse tamanho tela*/
+    }
+
+   
+}
